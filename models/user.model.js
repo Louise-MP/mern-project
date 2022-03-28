@@ -63,15 +63,15 @@ const userSchema = new mongoose.Schema(
 // je lance la fonction de cryptage avant de sauvegarder (save) dans la bdd    
 userSchema.pre("save", async function(next) { //pas de fonction fléchée car on utilise un this...
      const salt = await bcrypt.genSalt(); // génère le salage 
-     this.password = await bcrypt.hash(this.password, salt); // va venir saler le mdp avec le salage généré
+     this.password = await bcrypt.hash(this.password, salt); // va venir saler le mdp   
      next();
 })
 
 // je compare le mdp présent dans la bdd avec le mdp rentré par le user dans le input password pour se login
 userSchema.statics.login = async function(email, password) {
-    const user = await this.findOne({ email });
+    const user = await this.findOne({ email }); // on trouve ce qui correspond à l'email dans la bdd
     if (user) { 
-        const auth = await bcrypt.compare(password, user.password)
+        const auth = await bcrypt.compare(password, user.password); // vient controller le password qui est le parametre de la fonction et le password qui se trouve dans la bdd 
         if (auth) { // si auth est ok => retourne user sinon erreur
             return user;
         }
