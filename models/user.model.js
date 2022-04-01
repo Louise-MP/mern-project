@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema(
             required: true,
             minlength: 3,
             maxlength: 55,
-            unique: true, // important
+            unique: true, // (important)
             trim: true // supprime les espaces à la fin du pseudo 
         },
 
@@ -18,6 +18,7 @@ const userSchema = new mongoose.Schema(
             required: true,
             validate: [isEmail], // (validator = validation très précise de l'email) fait en sorte que l'email fonctionne
             lowercase: true,
+            unique: true,
             trim: true
         },
         

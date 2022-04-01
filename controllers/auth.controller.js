@@ -1,25 +1,28 @@
 const UserModel = require('../models/user.model');
 const jwt = require('jsonwebtoken');
+const { signUpErrors } = require('../utils/errors.utils');
+const { signInErrors } = require('../utils/errors.utils');
 
 // création et durée de vie du token du user
 const maxAge = 3 * 24 * 60 * 60 * 1000; // durée de vie du token du user
 
 const createToken = (id) => {
-    return jwt.sign({id}, process.env.TOKEN_SECRET, { // prend l'id du user et la clé secrete et en fait un mélange des deux, ce qui créer un token unique pour user
+    return jwt.sign({ id }, process.env.TOKEN_SECRET, { // prend l'id du user et la clé secrete et en fait un mélange des deux, ce qui créer un token unique pour user
         expiresIn: maxAge
     })
 };
 
 // le user s'enregistre
 module.exports.signUp = async(req, res) => {
-    const {pseudo, email, password} = req.body
+    const { pseudo, email, password } = req.body
 
     try {
-        const user = await UserModel.create({pseudo, email, password});
-        res.status(201).json({user: user._id});
+        const user = await UserModel.create({ pseudo, email, password });
+        res.status(201).json({ user: user._id });
     }
     catch(err) {
-        res.status(200).send({err})
+        const errors = signUpErrors(err)
+        res.status(200).send({ errors }); 
     }
 }
 
@@ -35,7 +38,8 @@ module.exports.signIn = async(req, res) => {
     }  
 
     catch (err) {
-        res.status(200).json(err);
+        const errors = signInErrors(err)
+        res.status(200).json({ errors });
     }
 }
 
@@ -44,3 +48,4 @@ module.exports.logout = (req, res) => {
     res.cookie('jwt', '', { maxAge: 1 }); // on donne une durée de vie très courte au cookie pour qu'il se détruise le plus rapidement possible
     res.redirect('/'); // sans cookie/token, le user n'a plus accès à rien et sera redirigé vers la page de sign in pour se connecter
 }
+

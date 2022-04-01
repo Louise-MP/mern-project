@@ -15,9 +15,10 @@ module.exports. checkUser = (req, res, next) => {
             next();
             // s'il ne trouve pas d'erreur
         } else {
-            let user = await UserModel.findById(decodedToken);
+            console.log('decoded token' + decodedToken)
+            let user = await UserModel.findById(decodedToken.id);
             res.locals.user = user; // .locals => parametres provisoires dans la requete qui passe les infos et tout ce qui transite dans user
-            console.log(user);
+            console.log(res.locals.user);
             next();
         }
     }) 
@@ -26,5 +27,24 @@ module.exports. checkUser = (req, res, next) => {
     else {
         res.locals.user = null; // s'il n'y a pas de token, alors on ne veut pas voir les infos de user 
         next(); 
+    }
+} 
+
+
+module.exports.requireAuth = (res, req, next) => {
+    const token = res.cookies.jwt; // on recupere le cookie
+    if (token) { // si on trouve un token on lance la verification jwt
+        jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                console.log(decodedToken.id);
+                next();
+            }
+        });
+    } 
+    else {
+        console.log('No token');
     }
 } 

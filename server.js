@@ -4,8 +4,10 @@ const cookieParser = require('cookie-parser');
 const userRoutes= require('./routes/user.routes');
 require('dotenv').config({path: './config/.env'});
 require('./config/db');
+
 // appel de la fonction directement
 const { checkUser } = require('./middleware/auth.middleware');
+const { requireAuth } = require('./middleware/auth.middleware');
 
 const app = express();
 
@@ -16,6 +18,9 @@ app.use(cookieParser());
 
 // jwt (vérifie si le user possède bien un token qui correspond à un id..) de cette manière on assure la sécurité et la connexion des user
 app.get('*', checkUser); // (* = toutes les routes get) si la route c'est '*', ça déclenche le middleware checkUser
+app.get('/jwtid', requireAuth, (req, res) => {
+  res.status(200).send(res.locals.user._id)
+});
 
 
 // routes user (toutes les routes qui ont un lien avec le user)
