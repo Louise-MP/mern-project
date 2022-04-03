@@ -83,7 +83,7 @@ userSchema.statics.login = async function(email, password) {
 
 
 
-// j'exporte le model "pour le retrouver" dans la table user de la bdd
+// j'exporte le model pour le retrouver dans la table user de la bdd
 const UserModel = mongoose.model('user', userSchema);
 
 module.exports = UserModel;
