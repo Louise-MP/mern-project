@@ -22,7 +22,7 @@ const PostSchema = new mongoose.Schema(
         },
 
         likers: {  
-            type: [String], // tableau qui regroupe les id des personnes qui ont aimé le post 
+            type: [String], // tableau qui regroupe les id des personnes qui ont liké le post 
             required: true
         },
         
@@ -32,7 +32,7 @@ const PostSchema = new mongoose.Schema(
                     commenterId: String,
                     commenterPseudo: String,
                     text: String,
-                    // timestamp:  ,
+                    timestamp:  Number 
                 }
             ],
             required: true,

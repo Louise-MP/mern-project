@@ -1,12 +1,17 @@
 const mongoose = require("mongoose");
 
-mongoose
-  .connect(
-    "mongodb+srv://louise-mpl:khaN91000@cluster0.my1ag.mongodb.net/mern-project",
+// rajouté après "bug" ==> (node:8756) DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead. (Use `node --trace-deprecation ...` to show where the warning was created)
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+
+mongoose.connect(
+    "mongodb+srv://louise-mpl:khaN91000@cluster0.my1ag.mongodb.net/mern-project", 
     {
       useNewUrlParser: true,
-      useUnifiedTopology: true,
+      useUnifiedTopology: true
     }
   )
   .then(() => console.log("Connected to MongoDB 🎉"))
   .catch((err) => console.log("Failed to connect to MongoDB", err));
+

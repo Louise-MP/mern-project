@@ -40,8 +40,8 @@ const userSchema = new mongoose.Schema(
         },
 
         followers: {
-            type: [String] // tableau qui regroupe tous les id des followers du user 
-            // (ces id seront - dans ce cas précis de projet autodidacte - stockés dans une bdd mongoDB)
+            type: [String] // tableau qui regroupe les id des followers du user 
+            // (ces id seront stockés dans la bdd)
         },
 
         following: {
@@ -49,7 +49,7 @@ const userSchema = new mongoose.Schema(
         },
 
         likes: {
-            type: [String ] // tableau qui regroupe tous les id des posts likés, 
+            type: [String] // tableau qui regroupe tous les id des posts likés, 
             // regroupe les posts qui ont deja été likés par le user 
             // pour empecher le user de liker à l'infini
             // dès que le user like un post, l'id du post vient dans ce tableau
