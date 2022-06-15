@@ -171,17 +171,3 @@ module.exports.unfollow = (req, res) => {
     });
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-// likes

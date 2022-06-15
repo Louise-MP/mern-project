@@ -38,7 +38,7 @@ module.exports.uploadErrors = (err) => {
     let errors = { format: '', maxSize: ''}; // soit le format n'est pas correct, soit la taille de l'image
 
     if (err.message.includes('invalid file'))
-    errors.format = "Format non respecté";
+    errors.format = "Format non pris en charge";
 
     if (err.message.includes('max size'))
     errors.maxSize = "Le fichier doit faire moins de 500ko";

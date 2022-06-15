@@ -172,15 +172,14 @@ module.exports.commentPost = (req, res) => {
 
     try {
         return PostModel.findByIdAndUpdate(
-            req.params.id, // on récupère l'id en paramètre
+            req.params.id, // on récupère l'id du post 🤷🏽‍♀️ en paramètre
             {
                 $push:  { // on push dans le tableau comments ; ajoute le commentaire à la suite des autres
                     comments: {  
-                        commenterId: req.body.commenterId, // on récupère l'id de la personne qui a écrit le commentaire
+                        commenterId: req.body.commenterId,
                         commenterPseudo: req.body.commenterPseudo,
                         text: req.body.text,
                         timestamp: new Date().getTime()
-
                     } 
                 }
             },

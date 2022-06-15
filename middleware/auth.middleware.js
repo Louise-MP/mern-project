@@ -11,7 +11,7 @@ module.exports. checkUser = (req, res, next) => {
     // s'il trouve une erreur dans le décodage, il "retire" le cookie "fraudluleux"
         if (err) {
             res.locals.user = null; // erreur dans le décodage
-            res.cookie('jwt', '', { maxAge: 1 }); // retirage du cookie jwt en limitant sa durée de vie à 1 ms
+            // res.cookie('jwt', '', { maxAge: 1 }); // retirage du cookie jwt en limitant sa durée de vie à 1 ms
             next();
             // s'il ne trouve pas d'erreur
         } else {

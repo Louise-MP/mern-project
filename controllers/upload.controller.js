@@ -11,7 +11,7 @@ module.exports.uploadProfil = async (req, res) => {
         throw Error("invalid file") // on jette l'erreur si les formats ne sont pas respectés
 
         if (req.file.size > 500000) // controle la taille de l'image
-        throw Error ("max size") // on jette l'erreur si les formats ne sont pas respectés
+        throw Error ("max size") // on jette l'erreur si la taille n'est pas respectée
     }
     catch (err) {
         const errors = uploadErrors(err)

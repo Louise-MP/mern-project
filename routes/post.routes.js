@@ -13,8 +13,8 @@ router.patch('/unlike-post/:id', postController.unlikePost);
 
 // commentaires 
 router.patch('/comment-post/:id', postController.commentPost); // id du post que l'on souhaite commenter
-router.patch('/edit-comment-post/:id', postController.editCommentPost); // éditer le commentaire d'un post
-router.patch('/delete-comment-post/:id', postController.deleteCommentPost); // supprimer le commentaire d'un post
+router.patch('/edit-comment-post/:id', postController.editCommentPost); // éditer le commentaire
+router.patch('/delete-comment-post/:id', postController.deleteCommentPost); // supprimer le commentaire
 
 
 module.exports = router;
