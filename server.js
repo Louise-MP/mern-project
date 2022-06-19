@@ -38,7 +38,12 @@ app.get('/jwtid', requireAuth, (req, res) => {
 app.use('/api/user', userRoutes); // toutes les routes qui ont un lien avec le user
 app.use('/api/post', postRoutes); // toutes les routes qui ont un lien avec les posts
 
+// heroku
+app.get('/', (req, res) => {
+  res.send('APP IS RUNNING');
+});
+
 // server (toujours à la fin du fichier )
 app.listen(process.env.PORT, () => {
-    console.log(`Listening on port ${ process.env.PORT }`);
-  })
+  console.log(`Listening on port ${ process.env.PORT }`);
+})
