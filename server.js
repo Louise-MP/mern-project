@@ -49,6 +49,6 @@ app.get('/', (req, res) => {
 });
 
 // server (toujours à la fin du fichier )
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 4000, () => {
   console.log(`Listening on port ${ process.env.PORT }`);
 })
