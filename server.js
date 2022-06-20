@@ -27,7 +27,7 @@ const corsOptions ={
 }
 
  
-app.use(cors(corsOptions))
+app.use(cors(corsOptions));
 
 
 // body parser (indispensable pour traiter les données qui vont transiter lors des requetes)

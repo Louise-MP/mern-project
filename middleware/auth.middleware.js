@@ -3,7 +3,7 @@ const UserModel = require('../models/user.model');
 const userModel = require('../models/user.model');
 
 // vérifie si le token du user existe 
-module.exports. checkUser = (req, res, next) => {
+module.exports.checkUser = (req, res, next) => {
     const token = req.cookies.jwt // si on veut pouvoir lire un cookie il faut installer cookie parser
     if (token) {
     // s'il y a un cookie qui s'appelle jwt => on le vérifie en lui passant notre token qui est en cookie et notre clé secrete
