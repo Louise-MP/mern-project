@@ -18,7 +18,8 @@ const app = express();
 // solution : activer les crdentials dans axios ET dans le cors 
 
 const corsOptions ={
-  origin: process.env.CLIENT_URL || '*',
+  origin: process.env.CLIENT_URL,
+  withCredentials: true,
   credentials: true,
   allowedHeaders: 'Origin, X-Requested-With, x-access-token, role, Content, Accept, Content-Type, Authorization',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
