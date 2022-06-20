@@ -26,17 +26,6 @@ const corsOptions ={
   preflightContinue: false,
 }
 
-// Add Access Control Allow Origin headers
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", process.env.CLIENT_URL);
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
-
-
 app.use(cors(corsOptions));
 
 // body parser (indispensable pour traiter les données qui vont transiter lors des requetes)
