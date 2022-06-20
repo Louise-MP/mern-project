@@ -17,7 +17,7 @@ const app = express();
 // code modifié : erreur lié au credentials : axios Access to XMLHttpRequest at 'http://localhost:4000/api/user/login' from origin 'http://localhost:3000' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The value of the 'Access-Control-Allow-Origin' header in the response must not be the wildcard '*' when the request's credentials mode is 'include'. The credentials mode of requests initiated by the XMLHttpRequest is controlled by the withCredentials attribute.
 // solution : activer les crdentials dans axios ET dans le cors 
 const corsOptions ={
-    origin:'https://polite-sawine-eca30c.netlify.app/', 
+    origin:'https://incomparable-wisp-0360d0.netlify.app/', 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
