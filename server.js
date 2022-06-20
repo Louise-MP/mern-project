@@ -17,29 +17,25 @@ const app = express();
 // code modifié : erreur lié au credentials : axios Access to XMLHttpRequest at 'http://localhost:4000/api/user/login' from origin 'http://localhost:3000' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The value of the 'Access-Control-Allow-Origin' header in the response must not be the wildcard '*' when the request's credentials mode is 'include'. The credentials mode of requests initiated by the XMLHttpRequest is controlled by the withCredentials attribute.
 // solution : activer les crdentials dans axios ET dans le cors 
 
-const corsOptions ={
+// const corsOptions ={
+//   origin: process.env.CLIENT_URL || "https://racoont.netlify.app",
+//   credentials: true,
+//   allowedHeaders: ["sessionId", "Content-Type"],
+//   exposedHeaders: ["sessionId"],
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   preflightContinue: false,
+// }
+
+app.use(cors({
   origin: process.env.CLIENT_URL || "https://racoont.netlify.app",
   credentials: true,
-  allowedHeaders: ["sessionId", "Content-Type"],
-  exposedHeaders: ["sessionId"],
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  preflightContinue: false,
-}
-
-// const allowCrossDomain = function(req, res, next) {
-//   res.header('Access-Control-Allow-Origin', "https://racoont.netlify.app");
-//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-//   res.header('Access-Control-Allow-Headers', 'Content-Type');
-//   next();
-// }
-// app.configure(function() {
-//   app.use(allowCrossDomain);
-//   //some other code
-// }); 
+  methods: ['GET', 'HEAD','PUT','PATCH','POST', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  preflightContinue: false
+}));
 
 //app.use(cors(corsOptions));
-app.use(cors({ origin: "https://racoont.netlify.app", }));
-app.use((req, res, next) => { res.header('Access-Control-Allow-Origin', '*'); next(); });
+
 
 // body parser (indispensable pour traiter les données qui vont transiter lors des requetes)
 app.use(bodyParser.json()); 
