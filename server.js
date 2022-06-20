@@ -17,21 +17,21 @@ const app = express();
 // code modifié : erreur lié au credentials : axios Access to XMLHttpRequest at 'http://localhost:4000/api/user/login' from origin 'http://localhost:3000' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The value of the 'Access-Control-Allow-Origin' header in the response must not be the wildcard '*' when the request's credentials mode is 'include'. The credentials mode of requests initiated by the XMLHttpRequest is controlled by the withCredentials attribute.
 // solution : activer les crdentials dans axios ET dans le cors 
 
-// const corsOptions ={
-//   origin: process.env.CLIENT_URL || "https://racoont.netlify.app",
-//   credentials: true,
-//   allowedHeaders: ["sessionId", "Content-Type"],
-//   exposedHeaders: ["sessionId"],
-//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//   preflightContinue: false,
-// }
+const corsOptions ={
+  origin: process.env.CLIENT_URL || "https://racoont.netlify.app",
+  credentials: true,
+  allowedHeaders: ["sessionId", "Content-Type"],
+  exposedHeaders: ["sessionId"],
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  preflightContinue: false,
+}
 
-const corsOptions = {
-  "origin": "*",
-  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-  "preflightContinue": false,
-  "optionsSuccessStatus": 204,
- }
+// const corsOptions = {
+//   "origin": process.env.CLIENT_URL || "https://racoont.netlify.app",
+//   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+//   "preflightContinue": false,
+//   "optionsSuccessStatus": 204,
+//  }
  
 app.use(cors(corsOptions))
 
