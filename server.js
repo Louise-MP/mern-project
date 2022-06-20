@@ -26,18 +26,20 @@ const corsOptions ={
   preflightContinue: false,
 }
 
-const allowCrossDomain = function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', "https://racoont.netlify.app");
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-}
-app.configure(function() {
-  app.use(allowCrossDomain);
-  //some other code
-}); 
+// const allowCrossDomain = function(req, res, next) {
+//   res.header('Access-Control-Allow-Origin', "https://racoont.netlify.app");
+//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type');
+//   next();
+// }
+// app.configure(function() {
+//   app.use(allowCrossDomain);
+//   //some other code
+// }); 
 
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
+app.use(cors({ origin: "https://racoont.netlify.app", }));
+app.use((req, res, next) => { res.header('Access-Control-Allow-Origin', '*'); next(); });
 
 // body parser (indispensable pour traiter les données qui vont transiter lors des requetes)
 app.use(bodyParser.json()); 
