@@ -26,15 +26,14 @@ const app = express();
 //   preflightContinue: false,
 // }
 
-app.use(cors({
-  origin: process.env.CLIENT_URL || "https://racoont.netlify.app",
-  credentials: true,
-  methods: ['GET', 'HEAD','PUT','PATCH','POST', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  preflightContinue: false
-}));
-
-//app.use(cors(corsOptions));
+const corsOptions = {
+  "origin": "*",
+  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+  "preflightContinue": false,
+  "optionsSuccessStatus": 204,
+ }
+ 
+app.use(cors(corsOptions))
 
 
 // body parser (indispensable pour traiter les données qui vont transiter lors des requetes)
