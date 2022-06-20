@@ -18,20 +18,14 @@ const app = express();
 // solution : activer les crdentials dans axios ET dans le cors 
 
 const corsOptions ={
-  origin: process.env.CLIENT_URL || "https://racoont.netlify.app",
+  origin: process.env.CLIENT_URL,
   credentials: true,
-  allowedHeaders: ["sessionId", "Content-Type"],
-  exposedHeaders: ["sessionId"],
+  allowedHeaders: 'Origin, X-Requested-With, x-access-token, role, Content, Accept, Content-Type, Authorization',
+  exposedHeaders: ['sessionId'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  preflightContinue: false,
+  preflightContinue: false
 }
 
-// const corsOptions = {
-//   "origin": process.env.CLIENT_URL || "https://racoont.netlify.app",
-//   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-//   "preflightContinue": false,
-//   "optionsSuccessStatus": 204,
-//  }
  
 app.use(cors(corsOptions))
 
@@ -57,6 +51,6 @@ app.get('/', (req, res) => {
 });
 
 // server (toujours à la fin du fichier )
-app.listen(process.env.PORT || 4000, () => {
+app.listen(process.env.PORT, () => {
   console.log(`Listening on port ${ process.env.PORT }`);
 })
