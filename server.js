@@ -18,7 +18,7 @@ const app = express();
 // solution : activer les crdentials dans axios ET dans le cors 
 
 const corsOptions ={
-  origin: process.env.CLIENT_URL,
+  origin: process.env.CLIENT_URL || "https://racoont.netlify.app",
   credentials: true,
   allowedHeaders: ["sessionId", "Content-Type"],
   exposedHeaders: ["sessionId"],
