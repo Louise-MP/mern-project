@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://loumern.herokuapp.com, https://loumern.herokuapp.com/api/user/login",
+  "proxy": "https://loumern.herokuapp.com",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.16.4",
