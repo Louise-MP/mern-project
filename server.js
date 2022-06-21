@@ -41,7 +41,7 @@ app.use(cookieParser());
 
 // jwt (vérifie si le user possède bien un token qui correspond à un id..) de cette manière on assure la sécurité et la connexion des user
 app.get('*', checkUser); // (* = toutes les routes get) si la route c'est '*', ça déclenche le middleware checkUser
-app.get('jwtid', requireAuth, (req, res) => {
+app.get('/jwtid', requireAuth, (req, res) => {
   res.status(200).send(res.locals.user._id)
 });
 
