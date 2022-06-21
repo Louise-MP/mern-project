@@ -19,9 +19,7 @@ const app = express();
 
 const corsOptions ={
   origin: process.env.CLIENT_URL || "https://racoont.netlify.app",
-  "Access-Control-Allow-Origin": "https://racoont.netlify.app",
   credentials: true,
-  headers: ["Access-Control-Allow-Origin","Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type", "CORELATION_ID"],
   allowedHeaders: 'Origin, X-Requested-With, x-access-token, role, Content, Accept, Content-Type, Authorization',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   preflightContinue: false
