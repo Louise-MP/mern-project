@@ -33,7 +33,7 @@ module.exports.checkUser = (req, res, next) => {
 
 module.exports.requireAuth = (res, req, next) => {
 
-    const token = res.cookies.jwt; // on recupere le cookie
+    const token = req.cookies.jwt; // on recupere le cookie
     if (token) { // si on trouve un token on lance la verification jwt
         jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {
             if (err) {
