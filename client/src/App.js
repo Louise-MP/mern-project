@@ -17,6 +17,7 @@ const App = () => {
         method: "get",
         url: `${process.env.REACT_APP_API_URL}jwtid`, // quand il y a un get /jwtid, go dans l'api récup l'id du user 🤷🏽‍♀️ grace à axios
         withCredentials: true,
+        headers: {"Content-Type": "application/json"},
         // on ne passe pas de data car c'est un get : on veut recupérer des informations  
       })
         .then((res) => {
