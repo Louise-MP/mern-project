@@ -4,7 +4,15 @@ const userModel = require('../models/user.model');
 
 // vérifie si le token du user existe 
 module.exports.checkUser = (req, res, next) => {
-    const token = req.cookies.jwt // si on veut pouvoir lire un cookie il faut installer cookie parser
+    const authHeader = req.headers.authorization
+
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    res.status(403).json({message: "no proveido"})
+  }
+
+  const token = authHeader.split(' ')[1]
+
+    //const token = req.cookies.jwt // si on veut pouvoir lire un cookie il faut installer cookie parser
     if (token) {
     // s'il y a un cookie qui s'appelle jwt => on le vérifie en lui passant notre token qui est en cookie et notre clé secrete
     jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {
@@ -32,7 +40,15 @@ module.exports.checkUser = (req, res, next) => {
 
 
 module.exports.requireAuth = (res, req, next) => {
-    const token = res.cookies.jwt; // on recupere le cookie
+    const authHeader = req.headers.authorization
+
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    res.status(403).json({message: "no proveido"})
+  }
+
+  const token = authHeader.split(' ')[1]
+  
+    //const token = res.cookies.jwt; // on recupere le cookie
     if (token) { // si on trouve un token on lance la verification jwt
         jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {
             if (err) {
